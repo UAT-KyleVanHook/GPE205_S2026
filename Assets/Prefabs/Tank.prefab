@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3656604872036712972}
   - component: {fileID: 792101121125153689}
   - component: {fileID: 8342927755952515728}
+  - component: {fileID: 2547145023145896627}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -141,9 +142,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.7887652
-  m_Height: 1.5
+  m_Height: 1.5775304
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0}
+  m_Center: {x: 0, y: 0.76725197, z: 0}
 --- !u!114 &8342927755952515728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,3 +159,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PawnPlayer
   mover: {fileID: 0}
   controller: {fileID: 0}
+  moveSpeed: 5
+  turnSpeed: 100
+--- !u!114 &2547145023145896627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7833510797301047104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bfda9ebaec60e94a8684f5b0d6f30e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TankMover

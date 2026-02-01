@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,10 +17,19 @@ public class ControllerPlayer : Controller
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
         //enable input actions
         inputActions.Enable();
 
+        //add this to the list of players
+        GameManager.instance.players.Add(this);
+
+    }
+
+    public void OnDestroy()
+    {
+        
+        //remove this from list of players
+        GameManager.instance.players.Remove(this); 
 
     }
 

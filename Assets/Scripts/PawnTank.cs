@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class PawnTank : Pawn
 {
+    
+    private TankShooter shooter;
+
+    public float shootForce;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -12,6 +17,10 @@ public class PawnTank : Pawn
 
         //Do what all pawns do
         base.Start();
+
+        //get the shooter attached to the pawn
+        shooter = gameObject.GetComponent<TankShooter>();
+
 
     }
 
@@ -34,18 +43,46 @@ public class PawnTank : Pawn
 
         //Debug.Log("Moving!");
         mover.Move(directionToMove, moveSpeed);
-        
+
+        //set noise amount
+        noisemaker.SetNoiseVolume(5);
 
     }
     public override void Rotate(Vector3 directionToRotate)
     {
         //Debug.Log("Rotating!");
         mover.Rotate(directionToRotate, turnSpeed);
+
+
+        //set noise amount
+        noisemaker.SetNoiseVolume(5);
     }
 
     public override void Shoot()
     {
-        Debug.Log("Pew-Pew!");
+        //Debug.Log("Pew-Pew!");
+  
+        shooter.Shoot();
+
+        //set noise amount
+        noisemaker.SetNoiseVolume(20);
+    }
+
+
+    //AI methods
+    public override void RotateTowards(Vector3 position)
+    {
+        mover.RotateTowards(position, turnSpeed);
+    }
+
+    public override void RotateAI(Vector3 rotateDirection)
+    {
+        mover.RotateAI(rotateDirection, turnSpeed);
+    }
+
+    public override void AIShoot()
+    {
+        shooter.AIShoot();
     }
 
 }

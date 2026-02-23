@@ -15,8 +15,9 @@ public class ControllerPlayer : Controller
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
+
         //enable input actions
         inputActions.Enable();
 
@@ -53,7 +54,11 @@ public class ControllerPlayer : Controller
 
         if (inputActions["Shoot"].triggered)
         {
-            pawn.Shoot();
+
+            TankShooter shooter = pawn.GetComponent<TankShooter>();
+
+            //was "pawn.Shoot()", but had to change to to issue with AI enemies also firing.
+            shooter.Shoot();
         }
 
     }

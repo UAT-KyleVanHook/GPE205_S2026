@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    public AudioClip shootingClip;
+
     [Header("Prefabs")]
     public GameObject playerControllerPrefab;
     public GameObject playerPawnPrefab;
@@ -12,6 +14,7 @@ public class GameManager : MonoBehaviour
     [Header("Up-To-Date Lists")]
     public List<Pawn> tanks;
     public List<Controller> players;
+    public List<Controller_AI> ai;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,7 +36,7 @@ public class GameManager : MonoBehaviour
         //Clear our up to date list objects (not just memory locations, but actual lists)
         tanks = new List<Pawn>();
         players = new List<Controller>();
-
+        ai = new List<Controller_AI>();
     }
 
     void Start()

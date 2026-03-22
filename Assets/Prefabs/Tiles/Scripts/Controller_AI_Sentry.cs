@@ -28,6 +28,12 @@ public class Controller_AI_Sentry : Controller_AI
 
     public override void Update()
     {
+        if (target == null)
+        {
+            //set enemy targets
+            target = GameManager.instance.playerObject;
+        }
+
         base.Update();
 
     }

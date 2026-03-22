@@ -2,7 +2,17 @@ using UnityEngine;
 
 public class PickUpMoveSpeed : PickUp
 {
+    public static int count;
     public PowerUpMoveSpeed powerup;
+
+    public override void Start()
+    {
+        //increment static count
+        count++;
+
+        base.Start();
+
+    }
 
     public override void OnTriggerEnter(Collider other)
     {

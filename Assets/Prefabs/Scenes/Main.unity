@@ -6584,16 +6584,21 @@ MonoBehaviour:
   level:
     difficulty: 0
     mapGenerator: {fileID: 0}
+  playerLives: 0
+  playerObject: {fileID: 0}
+  playerController: {fileID: 0}
+  playerCamera: {fileID: 330585545}
   shootingClip: {fileID: 8300000, guid: f4dbfe0506a19f44e8af7fb2e1004346, type: 3}
   destructionClip: {fileID: 8300000, guid: 7d9509db97ce5d9489c7e533eabca523, type: 3}
-  playerObject: {fileID: 0}
-  playerCamera: {fileID: 330585545}
   playerControllerPrefab: {fileID: 3730907672516943844, guid: 05ce34fb2a0d1934d9fda90a6af2c5d8, type: 3}
   playerPawnPrefab: {fileID: 7833510797301047104, guid: 40ae9ae2457c4154a9e1549a53c16553, type: 3}
   tanks: []
   players: []
   ai: []
   playerSpawnPoints: []
+  enemySpawnPoints: []
+  enemySpawnCount: 0
+  enemies: []
 --- !u!4 &1256870545
 Transform:
   m_ObjectHideFlags: 0

@@ -30,6 +30,11 @@ public class CameraFollow : MonoBehaviour
         //show the current position of the camera target.
         //Debug.Log(target.transform.position);
 
+        if(target == null)
+        {
+            target = GameManager.instance.playerObject;
+        }
+
     }
 
 

@@ -2,8 +2,17 @@ using UnityEngine;
 
 public class PickUpMaxHealthUp : PickUp
 {
-
+    public static int count;
     public PowerUpMaxHealthUp powerup;
+
+    public override void Start()
+    {
+        //increment static count
+        count++;
+
+        base.Start();
+
+    }
 
     public override void OnTriggerEnter(Collider other)
     {

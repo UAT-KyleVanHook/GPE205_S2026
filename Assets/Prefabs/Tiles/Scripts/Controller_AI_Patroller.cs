@@ -21,8 +21,14 @@ public class Controller_AI_Patroller : Controller_AI
 
     public override void Update()
     {
-        base.Update();
 
+        if (target == null)
+        {
+            //set enemy targets
+            target = GameManager.instance.playerObject;
+        }
+
+        base.Update();
 
     }
 

@@ -8,9 +8,16 @@ public class SpawnerTimed : MonoBehaviour
     private float countdownTimer;
     private GameObject spawnedObject;
 
+    void Awake()
+    {
+        GameManager.instance.powerUpSpawners.Add(this);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+
         //chekck if the object spawns on start
         if(bIsSpawnOnStart)
         {
@@ -26,25 +33,31 @@ public class SpawnerTimed : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //check if the object is spawned
-        if (spawnedObject == null)
+        //check if there is an object inserted into the objectToSpawn. If not null, allow spawning.
+        if (objectToSpawn != null)
         {
-            countdownTimer -= Time.deltaTime;
-
-
-            //every frame deincrement timer
-            countdownTimer -= Time.deltaTime;
-
-            if (countdownTimer <= 0)
+            //check if the object is spawned
+            if (spawnedObject == null)
             {
-                //spawn object
-                spawnedObject = Instantiate(objectToSpawn, transform.position, transform.rotation) as GameObject;
+                countdownTimer -= Time.deltaTime;
 
-                //reset timer
-                countdownTimer = timeBetweenSpawns;
+
+                //every frame deincrement timer
+                countdownTimer -= Time.deltaTime;
+
+                if (countdownTimer <= 0)
+                {
+                    //spawn object
+                    spawnedObject = Instantiate(objectToSpawn, transform.position, transform.rotation) as GameObject;
+
+                    //reset timer
+                    countdownTimer = timeBetweenSpawns;
+                }
+
             }
-
         }
+
+
         
     }
 }

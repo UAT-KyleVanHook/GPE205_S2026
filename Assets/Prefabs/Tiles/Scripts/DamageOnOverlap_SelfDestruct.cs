@@ -1,10 +1,12 @@
 using UnityEngine;
 
-//make sure that this component requires a certain component
-[RequireComponent (typeof(Collider))]
 
-public class DamageOnOverlap : MonoBehaviour
+//make sure that this component requires a certain component
+[RequireComponent(typeof(Collider))]
+public class DamageOnOverlap_SelfDestruct : MonoBehaviour
 {
+    public GameObject parentObject;
+
     public float damageDone;
     private Collider mCollider;
 
@@ -12,7 +14,7 @@ public class DamageOnOverlap : MonoBehaviour
     void Start()
     {
         //get collider
-        mCollider = GetComponent<Collider> ();
+        mCollider = GetComponent<Collider>();
         //set this collider as a trigger
         mCollider.isTrigger = true;
 
@@ -21,7 +23,7 @@ public class DamageOnOverlap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void OnTriggerEnter(Collider other)
@@ -29,6 +31,8 @@ public class DamageOnOverlap : MonoBehaviour
         //get other objects health componenet
         HealthComponent otherHealth = other.GetComponent<HealthComponent>();
 
+        if (other.CompareTag("Player"))
+        {
             //if it has a healthComp
             if (otherHealth != null)
             {
@@ -37,8 +41,9 @@ public class DamageOnOverlap : MonoBehaviour
             }
 
             //Destroy projectile
-            Destroy(gameObject);
+            Destroy(parentObject);
 
+        }
 
     }
 }

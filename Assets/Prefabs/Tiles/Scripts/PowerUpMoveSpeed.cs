@@ -3,7 +3,7 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpMoveSpeed : PowerUp
 {
-    public float speedBostAmount;
+    public float speedBoostAmount;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -21,13 +21,13 @@ public class PowerUpMoveSpeed : PowerUp
     public override void Apply(Pawn target)
     {
         // Increase the pawn's move speed
-        target.moveSpeed += speedBostAmount;
+        target.moveSpeed += speedBoostAmount;
     }
 
     public override void Remove(Pawn target)
     {
         // reset the pawn's move speed
-        target.moveSpeed -= speedBostAmount;
+        target.moveSpeed -= speedBoostAmount;
     }
 
 }

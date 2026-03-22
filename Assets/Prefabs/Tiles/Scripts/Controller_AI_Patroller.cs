@@ -15,6 +15,8 @@ public class Controller_AI_Patroller : Controller_AI
         //do the base of start
         base.Start();
 
+
+
         ChangeState(AIState.Idle);
 
     }
@@ -30,12 +32,19 @@ public class Controller_AI_Patroller : Controller_AI
 
         base.Update();
 
+
     }
 
     public override void MakeDecisions()
     {
 
         //Debug.Log(currentState);
+
+        //if the pawn we are attached to is null, destroy this controller
+        if (pawn == null)
+        {
+            Destroy(gameObject);
+        }
 
         switch (currentState)
         {

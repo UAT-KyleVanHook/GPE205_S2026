@@ -8,6 +8,7 @@ public class Controller_AI_Sentry : Controller_AI
     private float tolerance = 0.1f;
 
 
+
     public override void Start()
     {
 
@@ -15,6 +16,8 @@ public class Controller_AI_Sentry : Controller_AI
 
         //do the base of start
         base.Start();
+
+
 
 
         ChangeState(AIState.Idle);
@@ -36,12 +39,19 @@ public class Controller_AI_Sentry : Controller_AI
 
         base.Update();
 
+
     }
 
     public override void MakeDecisions()
     {
         //Debug.Log("Pawn's Y eulerAngle:" + pawn.transform.eulerAngles.y);
         //Debug.Log("targetRotationY Y eulerAngle:" + targetRotationY);
+
+        //if the pawn we are attached to is null, destroy this controller
+        if (pawn == null)
+        {
+            Destroy(gameObject);
+        }
 
         switch (currentState)
         {

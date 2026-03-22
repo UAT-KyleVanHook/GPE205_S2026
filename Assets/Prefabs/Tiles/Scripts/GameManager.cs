@@ -38,11 +38,19 @@ public class GameManager : MonoBehaviour
     private int startingSpawnCount = 0;
     public List<GameObject> enemies;
 
+    [Header("Enemy AI Controller List: Make sure that the AI Controllers are in the same order as the enemy list above.")]
+    public List<GameObject> enemiesAIController;
+
     [Header("PowerUp List: Add powerups to Spawn")]
     public List<GameObject> powerups;
     public int healthPickupAmount;
     public int healthMaxPickupAmount;
     public int moveSpeedPickupAmount;
+
+    public float heatlhPickupSpawnTime;
+    public float heatlhMaxPickupSpawnTime;
+    public float moveSpeedPickupSpawnTime;
+
     private int powerupTotal;
     //used to track how many loops are left
     private int powerupTotalCount;
@@ -287,15 +295,75 @@ public class GameManager : MonoBehaviour
 
             enemySpawnPosition = spawnPointTransform.position;
 
-            // spawnPoint.SetSpawnedEnemy()
+            //keep track of the index of the enemy 
+            int enemyIndex = Random.Range(0, enemies.Count);
 
-            //get a random enemy prfab from list
-            GameObject tempEnemyObject = enemies[Random.Range(0, enemies.Count)];
+            //get a random enemy prfab from list using enemyIndex.
+            GameObject tempEnemyObject = enemies[enemyIndex];
 
             //Spawn tank pawn (and store it in tanks)
             Pawn tempEnemyTankPawn = SpawnEnemyTank(tempEnemyObject);
 
+            //set the pawn tank as the object to be traceked whne spawned.
             spawnPoint.SetSpawnedEnemy(tempEnemyObject);
+
+            //create temp enemy controller
+            Controller_AI tempEnemyController;
+
+            //switch case to figure out which controller to assign to the spawned tank
+            // MAKE SURE THAT THE ENEMY LIST AND THE AI CONTROLLER ARE IN THE SAME ORDER!!!
+            switch (enemyIndex)
+            {
+                //flee AI
+                case 0:
+
+                    //set controller for the enemy tank
+                    tempEnemyController = SpawnEnemyController(enemiesAIController[enemyIndex]);
+
+                    //Have player possess pawn
+                    tempEnemyController.Possess(tempEnemyTankPawn);
+
+                    break;
+
+                //Kamikaze AI
+                case 1:
+
+                    //set controller for the enemy tank
+                    tempEnemyController = SpawnEnemyController(enemiesAIController[enemyIndex]);
+
+                    //Have player possess pawn
+                    tempEnemyController.Possess(tempEnemyTankPawn);
+
+                    break;
+
+                //Pursuer AI
+                case 2:
+
+                    //set controller for the enemy tank
+                    tempEnemyController = SpawnEnemyController(enemiesAIController[enemyIndex]);
+
+                    //Have player possess pawn
+                    tempEnemyController.Possess(tempEnemyTankPawn);
+
+                    break;
+
+                //Semtry AI
+                case 3:
+
+                    //set controller for the enemy tank
+                    tempEnemyController = SpawnEnemyController(enemiesAIController[enemyIndex]);
+
+                    //Have player possess pawn
+                    tempEnemyController.Possess(tempEnemyTankPawn);
+
+                    break;
+
+
+
+            }
+
+
+
 
             // move to spawnpoint
             tempEnemyTankPawn.transform.position = enemySpawnPosition;
@@ -330,6 +398,14 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public Controller_AI SpawnEnemyController(GameObject prefab)
+    {
+
+        GameObject tempEnemy = Instantiate<GameObject>(prefab, Vector3.zero, Quaternion.identity);
+        return tempEnemy.GetComponent<Controller_AI>();
+
+    }
+
     //spawn power ups
 
     public void SetPowerUp()
@@ -354,6 +430,7 @@ public class GameManager : MonoBehaviour
             int tempIndex = Random.Range(0, powerups.Count);
 
             tempPickUp = powerups[tempIndex];
+
             /*
             //check if the pickup health's static instance count is less than the desired pickup amount.
             //I.E.:check how many currently spawned pickuphealths currently exist.
@@ -400,6 +477,7 @@ public class GameManager : MonoBehaviour
 
             switch (tempIndex)
             {
+                //health pickup
                 case 0:
 
                     if (PickUpHealth.count < healthPickupAmount)
@@ -408,12 +486,15 @@ public class GameManager : MonoBehaviour
 
                         tempPowerUpSpawner.objectToSpawn = tempPickUp;
 
+                        tempPowerUpSpawner.timeBetweenSpawns = heatlhPickupSpawnTime;
+
                         powerupTotalCount--;
                         PickUpHealth.count++;
                     }
 
                     break;
 
+                    //max health pickup
                 case 1:
 
                     if (PickUpMaxHealthUp.count < healthMaxPickupAmount)
@@ -422,12 +503,15 @@ public class GameManager : MonoBehaviour
 
                         tempPowerUpSpawner.objectToSpawn = tempPickUp;
 
+                        tempPowerUpSpawner.timeBetweenSpawns = heatlhMaxPickupSpawnTime;
+
                         powerupTotalCount--;
                         PickUpMaxHealthUp.count++;
                     }
 
                     break;
 
+                    //move speed pickup
                 case 2:
 
                     if (PickUpMoveSpeed.count < moveSpeedPickupAmount)
@@ -436,16 +520,15 @@ public class GameManager : MonoBehaviour
 
                         tempPowerUpSpawner.objectToSpawn = tempPickUp;
 
+                        tempPowerUpSpawner.timeBetweenSpawns = moveSpeedPickupSpawnTime;
+
                         powerupTotalCount--;
                         PickUpMoveSpeed.count++;
                     }
 
                     break;
             }
-            
 
-            //deincrement poweruptotalCount
-            //powerupTotalCount--;
 
         } while (powerupTotalCount > 0);
 

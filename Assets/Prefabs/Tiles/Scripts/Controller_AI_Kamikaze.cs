@@ -4,8 +4,7 @@ using static UnityEngine.GraphicsBuffer;
 public class Controller_AI_Kamikaze : Controller_AI
 {
 
-    public float selfdestructDamageAmount;
-    public float selfdestructDistance;
+
     public override void Start()
     {
 
@@ -30,11 +29,20 @@ public class Controller_AI_Kamikaze : Controller_AI
 
         base.Update();
 
+
+
+
     }
 
     public override void MakeDecisions()
     {
         //Debug.Log("closest point:" + closetPoint);
+
+        //if the pawn we are attached to is null, destroy this controller
+        if (pawn == null)
+        {
+            Destroy(gameObject);
+        }
 
 
         switch (currentState)
@@ -95,11 +103,6 @@ public class Controller_AI_Kamikaze : Controller_AI
 
                 DoChase();
 
-                //if pawn is close enough to target
-                if(IsObjectInRange(target.transform, selfdestructDistance))
-                {
-                    ChangeState(AIState.SelfDestruct);
-                }
 
                 //check if the enemy can't see or hear the player
                 if (!CanSee(target) || !CanHear(target))
@@ -111,24 +114,6 @@ public class Controller_AI_Kamikaze : Controller_AI
 
                 break;
 
-            case AIState.SelfDestruct:
-
-                HealthComponent targetHealthComp = target.GetComponent<HealthComponent>();
-
-                if (targetHealthComp != null)
-                {
-
-                    //AudioSource.PlayClipAtPoint(GameManager.instance.destructionClip, pawn.transform.position, 1.0f);
-
-                    targetHealthComp.TakeDamage(selfdestructDamageAmount);
-
-                }
-
-                //destroy this object and connected objects
-                HealthComponent pawnHealthComp = pawn.GetComponent<HealthComponent>();
-                pawnHealthComp.Die();
-
-                break;
 
             //get the player as a target
             case AIState.ChooseTarget:

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1293330330285894384}
   - component: {fileID: 1395309653689796324}
   - component: {fileID: -8564746220092943742}
+  - component: {fileID: -8038145753344472430}
   m_Layer: 0
   m_Name: MoveSpeedPowerUp
   m_TagString: Untagged
@@ -126,4 +127,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PickUpMoveSpeed
   powerup:
     lifeSpan: 1
-    speedBostAmount: 5
+    speedBoostAmount: 0
+--- !u!114 &-8038145753344472430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889109541989996567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a7cd11eae7d8f45b4ad839acfbf168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingEffect
+  speed: 2
+  height: 0.1

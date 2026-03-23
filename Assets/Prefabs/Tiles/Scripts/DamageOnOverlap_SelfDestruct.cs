@@ -31,7 +31,7 @@ public class DamageOnOverlap_SelfDestruct : MonoBehaviour
         //get other objects health componenet
         HealthComponent otherHealth = other.GetComponent<HealthComponent>();
 
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !other.CompareTag("Projectile"))
         {
             //if it has a healthComp
             if (otherHealth != null)

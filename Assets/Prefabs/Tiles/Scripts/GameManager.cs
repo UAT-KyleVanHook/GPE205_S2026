@@ -347,7 +347,7 @@ public class GameManager : MonoBehaviour
 
                     break;
 
-                //Semtry AI
+                //Sentry AI
                 case 3:
 
                     //set controller for the enemy tank

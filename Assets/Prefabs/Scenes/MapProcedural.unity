@@ -180,9 +180,9 @@ MonoBehaviour:
   - {fileID: 3889109541989996567, guid: 0337eecbf222c774b9d55faad9a0231d, type: 3}
   - {fileID: 3889109541989996567, guid: 69c7ebf5839fc6e42b78ac49c9af96c3, type: 3}
   - {fileID: 3889109541989996567, guid: cd333751c2a33a342b571638adf41f86, type: 3}
-  healthPickupAmount: 2
+  healthPickupAmount: 1
   healthMaxPickupAmount: 1
-  moveSpeedPickupAmount: 1
+  moveSpeedPickupAmount: 2
   heatlhPickupSpawnTime: 60
   heatlhMaxPickupSpawnTime: 500
   moveSpeedPickupSpawnTime: 60
@@ -383,8 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8367e6bba1173fb428cf604c04959f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  randomType: 0
-  seed: 27
+  randomType: 2
+  seed: 500
   avialableTiles:
   - {fileID: 5067155071632127831, guid: 67a640049b507f640a508582d2548c2a, type: 3}
   - {fileID: 1921538785105656759, guid: c4ff774bada0bfa4e9180b9176fe6f2d, type: 3}

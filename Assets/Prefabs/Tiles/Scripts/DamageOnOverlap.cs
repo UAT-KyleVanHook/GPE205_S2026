@@ -34,10 +34,21 @@ public class DamageOnOverlap : MonoBehaviour
             {
                 //initiate damage on healthComp
                 otherHealth.TakeDamage(damageDone);
-            }
 
             //Destroy projectile
             Destroy(gameObject);
+
+            }
+
+            //if the projectile collides with a wall
+        if (other.CompareTag("Wall"))
+        {
+            //Destroy projectile
+            Destroy(gameObject);
+        }
+
+    
+
 
 
     }

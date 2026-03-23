@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PickUpMoveSpeed
   powerup:
-    lifeSpan: 1
-    speedBoostAmount: 0
+    lifeSpan: 5
+    speedBoostAmount: 5
 --- !u!114 &-8038145753344472430
 MonoBehaviour:
   m_ObjectHideFlags: 0

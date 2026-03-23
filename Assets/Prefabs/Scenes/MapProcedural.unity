@@ -171,13 +171,21 @@ MonoBehaviour:
   - {fileID: 3975476951372857355, guid: 0aa755823d1f10e4985d89df0c67b672, type: 3}
   - {fileID: 51292646115207178, guid: 1205e9ee4813023498f5f72108be3704, type: 3}
   - {fileID: 6480113463693359768, guid: 7feab7a0a5793dd4b91ab7d8bd3b1605, type: 3}
+  enemiesAIController:
+  - {fileID: 2435403885488257494, guid: 75c80efdedaf9c441803f59339830604, type: 3}
+  - {fileID: 1291732510673447788, guid: 3755f93679157b94ebc13222ecdb8b5a, type: 3}
+  - {fileID: 1592884203369472686, guid: 9810fc1a0e5f80646a3dde1881e6ca54, type: 3}
+  - {fileID: 8181442081228195416, guid: f8060aeeac98e874286e33db7dc5ece9, type: 3}
   powerups:
   - {fileID: 3889109541989996567, guid: 0337eecbf222c774b9d55faad9a0231d, type: 3}
   - {fileID: 3889109541989996567, guid: 69c7ebf5839fc6e42b78ac49c9af96c3, type: 3}
   - {fileID: 3889109541989996567, guid: cd333751c2a33a342b571638adf41f86, type: 3}
-  healthPickupAmount: 2
+  healthPickupAmount: 1
   healthMaxPickupAmount: 1
-  moveSpeedPickupAmount: 1
+  moveSpeedPickupAmount: 2
+  heatlhPickupSpawnTime: 60
+  heatlhMaxPickupSpawnTime: 500
+  moveSpeedPickupSpawnTime: 60
 --- !u!4 &259402218
 Transform:
   m_ObjectHideFlags: 0
@@ -375,8 +383,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8367e6bba1173fb428cf604c04959f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
-  randomType: 0
-  seed: 27
+  randomType: 2
+  seed: 500
   avialableTiles:
   - {fileID: 5067155071632127831, guid: 67a640049b507f640a508582d2548c2a, type: 3}
   - {fileID: 1921538785105656759, guid: c4ff774bada0bfa4e9180b9176fe6f2d, type: 3}

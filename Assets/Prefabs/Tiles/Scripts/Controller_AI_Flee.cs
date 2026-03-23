@@ -6,6 +6,7 @@ public class Controller_AI_Flee : Controller_AI
     //how close player can get before AI flees
     public float fleeRange = 10.0f;
 
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public override void Start()
     {
@@ -14,6 +15,7 @@ public class Controller_AI_Flee : Controller_AI
 
         //do the base of start
         base.Start();
+
 
         ChangeState(AIState.Idle);
 
@@ -36,6 +38,12 @@ public class Controller_AI_Flee : Controller_AI
     {
 
         //Debug.Log(currentState);
+
+        //if the pawn we are attached to is null, destroy this controller
+        if (pawn == null)
+        {
+            Destroy(gameObject);
+        }
 
         switch (currentState)
         {

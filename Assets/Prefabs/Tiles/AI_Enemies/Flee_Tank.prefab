@@ -18,12 +18,11 @@ GameObject:
   - component: {fileID: 2939974872565178429}
   - component: {fileID: 1301730066289407285}
   - component: {fileID: 9061111176894139545}
-  - component: {fileID: 2472381386208685872}
   - component: {fileID: 8676745355478849471}
   - component: {fileID: -3772061153665381583}
   m_Layer: 0
   m_Name: Flee_Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,27 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Noisemaker
   noiseVolume: 0
   decayRate: 1
---- !u!114 &2472381386208685872
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1953688690819153237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 789937cd726ed66489a09d46c8de1fd5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Controller_AI_Flee
-  pawn: {fileID: 0}
-  target: {fileID: 0}
-  fleeDistance: 10
-  hearingDistance: 1
-  visionDistance: 20
-  FOVAngle: 60
-  waypoints: []
-  waypointStopDistance: 0
-  fleeRange: 10
 --- !u!82 &8676745355478849471
 AudioSource:
   m_ObjectHideFlags: 0

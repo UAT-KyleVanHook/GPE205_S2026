@@ -18,12 +18,11 @@ GameObject:
   - component: {fileID: 283240232342581025}
   - component: {fileID: 58622141386220117}
   - component: {fileID: 5531236233505656140}
-  - component: {fileID: 8905445009202130087}
   - component: {fileID: 7524449277894143085}
   - component: {fileID: 1300856968966843573}
   m_Layer: 0
   m_Name: Sentry_Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,26 +225,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Noisemaker
   noiseVolume: 0
   decayRate: 1
---- !u!114 &8905445009202130087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6480113463693359768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5000fea5a7992f94597dc6e09b754598, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Controller_AI_Sentry
-  pawn: {fileID: 0}
-  target: {fileID: 0}
-  fleeDistance: 10
-  hearingDistance: 1
-  visionDistance: 30
-  FOVAngle: 60
-  waypoints: []
-  waypointStopDistance: 0
 --- !u!82 &7524449277894143085
 AudioSource:
   m_ObjectHideFlags: 0

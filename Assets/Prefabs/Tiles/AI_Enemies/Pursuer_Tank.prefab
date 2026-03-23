@@ -19,11 +19,10 @@ GameObject:
   - component: {fileID: 2702080450877156757}
   - component: {fileID: 3484920085694246532}
   - component: {fileID: 4832614822086720187}
-  - component: {fileID: -5225841171584098670}
   - component: {fileID: 1544907769913787335}
   m_Layer: 0
   m_Name: Pursuer_Tank
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,26 +322,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &-5225841171584098670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 51292646115207178}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d81bbb55fda95440abf4beb5265f0f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Controller_AI_Pursuer
-  pawn: {fileID: 0}
-  target: {fileID: 0}
-  fleeDistance: 10
-  hearingDistance: 2
-  visionDistance: 20
-  FOVAngle: 60
-  waypoints: []
-  waypointStopDistance: 0
 --- !u!114 &1544907769913787335
 MonoBehaviour:
   m_ObjectHideFlags: 0

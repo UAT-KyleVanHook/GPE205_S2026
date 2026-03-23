@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1293330330285894384}
   - component: {fileID: 1395309653689796324}
   - component: {fileID: 4902091191712178669}
+  - component: {fileID: 8122637182240320130}
   m_Layer: 0
   m_Name: HealthPickUp
   m_TagString: Untagged
@@ -127,3 +128,17 @@ MonoBehaviour:
   powerup:
     lifeSpan: 0
     amountToHeal: 1
+--- !u!114 &8122637182240320130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889109541989996567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0a7cd11eae7d8f45b4ad839acfbf168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FloatingEffect
+  speed: 2
+  height: 0.1

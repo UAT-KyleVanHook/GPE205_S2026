@@ -48,9 +48,9 @@ public class CameraFollow : MonoBehaviour
 
         // rotate directional, based on the movementvector. Is multiplied by the target players turn speed.
         //CameraYaw = movementVector.x * (lookTarget.turnSpeed * Time.deltaTime);
+        
 
-
-        // returns the camera offset from local space to world spac and sets the cameras transfrom position.
+        // returns the camera offset from local space to world space and sets the cameras transfrom position.
         transform.position = target.transform.TransformPoint(CameraOffset);
 
         //look at the palyer target. 

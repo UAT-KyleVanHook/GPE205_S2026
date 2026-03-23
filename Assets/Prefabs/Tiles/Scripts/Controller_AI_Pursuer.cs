@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Controller_AI_Pursuer : Controller_AI
 {
+
     public override void Start()
     {
 
@@ -11,6 +12,7 @@ public class Controller_AI_Pursuer : Controller_AI
 
         //do the base of start
         base.Start();
+
 
 
         ChangeState(AIState.Idle);
@@ -29,12 +31,19 @@ public class Controller_AI_Pursuer : Controller_AI
 
         base.Update();
 
+
+
     }
 
     public override void MakeDecisions()
     {
         //Debug.Log("closest point:" + closetPoint);
 
+        //if the pawn we are attached to is null, destroy this controller
+        if (pawn == null)
+        {
+            Destroy(gameObject);
+        }
 
         switch (currentState)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
-public enum AIState { Idle, Chase, Flee, ChaseAndShoot, Patrol, Turn, TurnAndShoot, Shoot, ChooseTarget, Roam, SelfDestruct}
+public enum AIState { Idle, Chase, Flee, ChaseAndShoot, Patrol, Turn, TurnAndShoot, Shoot, ChooseTarget, Roam }
 
 public abstract class Controller_AI : Controller
 {
@@ -36,11 +36,11 @@ public abstract class Controller_AI : Controller
         lastChangeStateTime = Time.time;
         
         //get the pawn attached to this controller
-        Pawn tempPawn = gameObject.GetComponent<Pawn>();
+        //Pawn tempPawn = gameObject.GetComponent<Pawn>();
 
-        pawn = tempPawn;
+        //pawn = tempPawn;
 
-        Possess(pawn);
+        //Possess(pawn);
 
         //set enemy targets
         target = GameManager.instance.playerObject;

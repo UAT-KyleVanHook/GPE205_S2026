@@ -267,7 +267,7 @@ public abstract class Controller_AI : Controller
                 if (GameManager.instance.players.Count > 0)
                 {
                     //Then target the gameObject of the pawn of the first player controller in the list
-                    target = GameManager.instance.players[0].pawn.gameObject;
+                    target = GameManager.instance.player1Object;
                 }
             }
         }

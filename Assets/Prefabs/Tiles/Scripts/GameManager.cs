@@ -280,14 +280,13 @@ public class GameManager : MonoBehaviour
 
         //check if the player is dead and if the lives counter is larger than 0, and if the GamePlayScreen is active.
         //if true, respawn the player.
-        if (currentPlayer1Lives >= 1 && player1Object == null && GameplayScreenObject.activeSelf)
+        if (GameplayScreenObject.activeSelf &&  currentPlayer1Lives >= 1 && player1Object == null)
         {
             RespawnPlayer1();
         }
         //respawn player 2
-        if (currentPlayer2Lives >= 1 && player2Object == null && GameplayScreenObject.activeSelf)
+        if (GameplayScreenObject.activeInHierarchy && currentPlayer2Lives >= 1 && player2Object == null)
         {
-
 
             RespawnPlayer2();
         }
@@ -305,7 +304,7 @@ public class GameManager : MonoBehaviour
             player1ScoreManger.SetScoreValue(currentPlayer1Score);
 
 
-            if (bIsSplitScreen == true)
+            if (bIsSplitScreen == true && GameplayScreenObject.activeSelf)
             {
                 currentPlayer2Score = player2Controller.currentScore;
 
@@ -335,7 +334,7 @@ public class GameManager : MonoBehaviour
             }
 
 
-            if (bIsSplitScreen == true)
+            if (bIsSplitScreen == true && GameplayScreenObject.activeSelf)
             {
                 if (currentPlayer2Score > highScore)
                 {
@@ -400,7 +399,7 @@ public class GameManager : MonoBehaviour
 
             }
 
-            if (bIsSplitScreen == true)
+            if (bIsSplitScreen == true && GameplayScreenObject.activeSelf)
             {
                 if (currentPlayer2Score > highScore)
                 {
@@ -436,13 +435,13 @@ public class GameManager : MonoBehaviour
         //Spawn player
         SpawnPlayer1();
 
-        if (bIsSplitScreen == true)
+        if (bIsSplitScreen == true && GameplayScreenObject.activeInHierarchy)
         {
             SpawnPlayer2();
         }
 
         //if splitscreen is true, split the screen
-        if (bIsSplitScreen == true)
+        if (bIsSplitScreen == true && GameplayScreenObject.activeInHierarchy)
         {
            
             Camera cam1 = player1Camera.GetComponent<Camera>();
@@ -452,11 +451,16 @@ public class GameManager : MonoBehaviour
             cam2.rect = new Rect(0.5f, 0f, 0.5f, 1f);
 
         }
+        else
+        {
+            Camera cam1 = player1Camera.GetComponent<Camera>();
+            cam1.rect = new Rect(0f, 0f, 1f, 1f);
+        }
 
-        //set player controller's score to zero (set this a a varable later)
-        player1Controller.currentScore = 0;
+            //set player controller's score to zero (set this a a varable later)
+            player1Controller.currentScore = 0;
 
-        if (bIsSplitScreen == true)
+        if (bIsSplitScreen == true && GameplayScreenObject.activeSelf)
         {
             player2Controller.currentScore = 0;
         }
@@ -721,47 +725,54 @@ public class GameManager : MonoBehaviour
 
     public void RespawnPlayer2()
     {
-        //player has died, respawn tank prefab and deincrement lives
-        //currentPlayer2Lives -= 1;
-
-        Vector3 playerSpawnPosition;
-
-        //choose a spawnpoint from the list
-        if (playerSpawnPoints.Count > 0)
+        //we need a check in the method as for some resaon it is spawning tanks when we flip form split screen back to single screen.
+        if (bIsSplitScreen == true && GameplayScreenObject.activeInHierarchy)
         {
-            Debug.Log("Spawn point was chosen!");
 
-            Transform spawnPoint = playerSpawnPoints[Random.Range(0, playerSpawnPoints.Count)].transform;
 
-            playerSpawnPosition = spawnPoint.position;
+            //player has died, respawn tank prefab and deincrement lives
+            //currentPlayer2Lives -= 1;
+
+            Vector3 playerSpawnPosition;
+
+            //choose a spawnpoint from the list
+            if (playerSpawnPoints.Count > 0)
+            {
+                Debug.Log("Spawn point was chosen!");
+
+                Transform spawnPoint = playerSpawnPoints[Random.Range(0, playerSpawnPoints.Count)].transform;
+
+                playerSpawnPosition = spawnPoint.position;
+            }
+            else
+            {
+                Debug.Log("Spawm point was not chosen!");
+                playerSpawnPosition = Vector3.zero;
+            }
+
+            //Spawn tank pawn (and store it in tanks)
+            Pawn tempTankPawn = SpawnTank(playerPawnPrefab);
+
+            //Have player possess pawn
+            player2Controller.Possess(tempTankPawn);
+
+            //set controller for healthcomp
+            PlayerHealthComponent tempHealthComp = tempTankPawn.GetComponent<PlayerHealthComponent>();
+            tempHealthComp.AssignController(player2Controller);
+
+            //add Audio Listener to pawn
+            //tempTankPawn.AddComponent<AudioListener>();
+
+            // move to spawnpoint
+            tempTankPawn.transform.position = playerSpawnPosition;
+
+
+            SetPlayer2Object(tempTankPawn.gameObject);
+
+            CameraFollow tempCamera = player2Camera.GetComponent<CameraFollow>();
+            tempCamera.SetTarget(player2Object);
+
         }
-        else
-        {
-            Debug.Log("Spawm point was not chosen!");
-            playerSpawnPosition = Vector3.zero;
-        }
-
-        //Spawn tank pawn (and store it in tanks)
-        Pawn tempTankPawn = SpawnTank(playerPawnPrefab);
-
-        //Have player possess pawn
-        player2Controller.Possess(tempTankPawn);
-
-        //set controller for healthcomp
-        PlayerHealthComponent tempHealthComp = tempTankPawn.GetComponent<PlayerHealthComponent>();
-        tempHealthComp.AssignController(player2Controller);
-
-        //add Audio Listener to pawn
-        //tempTankPawn.AddComponent<AudioListener>();
-
-        // move to spawnpoint
-        tempTankPawn.transform.position = playerSpawnPosition;
-
-
-        SetPlayer2Object(tempTankPawn.gameObject);
-
-        CameraFollow tempCamera = player2Camera.GetComponent<CameraFollow>();
-        tempCamera.SetTarget(player2Object);
 
     }
 
@@ -1079,7 +1090,7 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (bIsSplitScreen == true)
+        if (bIsSplitScreen == true && GameplayScreenObject.activeSelf)
         {
 
             Destroy(player2Object.gameObject);
@@ -1095,7 +1106,7 @@ public class GameManager : MonoBehaviour
         currentPlayer1Score = 0;
         if (bIsSplitScreen == true)
         {
-            currentPlayer2Score = 1;
+            currentPlayer2Score = 0;
         }
 
         currentPlayer1Lives = 1;

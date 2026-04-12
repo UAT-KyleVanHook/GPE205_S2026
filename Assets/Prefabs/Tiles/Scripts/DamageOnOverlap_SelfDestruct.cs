@@ -3,30 +3,32 @@ using UnityEngine;
 
 //make sure that this component requires a certain component
 [RequireComponent(typeof(Collider))]
-public class DamageOnOverlap_SelfDestruct : MonoBehaviour
+public class DamageOnOverlap_SelfDestruct : DamageOnOverlap
 {
     public GameObject parentObject;
 
-    public float damageDone;
-    private Collider mCollider;
+    //public float damageDone;
+    //protected Collider mCollider;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public override void Start()
     {
         //get collider
         mCollider = GetComponent<Collider>();
         //set this collider as a trigger
         mCollider.isTrigger = true;
 
+        owner = parentObject.GetComponent<Pawn>();
+
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
 
     }
 
-    public void OnTriggerEnter(Collider other)
+    public override void OnTriggerEnter(Collider other)
     {
         //get other objects health componenet
         HealthComponent otherHealth = other.GetComponent<HealthComponent>();
@@ -37,7 +39,7 @@ public class DamageOnOverlap_SelfDestruct : MonoBehaviour
             if (otherHealth != null)
             {
                 //initiate damage on healthComp
-                otherHealth.TakeDamage(damageDone);
+                otherHealth.TakeDamage(damageDone, owner);
             }
 
             //Destroy projectile

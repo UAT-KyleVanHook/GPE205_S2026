@@ -27,7 +27,7 @@ public class Controller_AI_Flee : Controller_AI
         if (target == null)
         {
             //set enemy targets
-            target = GameManager.instance.playerObject;
+            target = GameManager.instance.player1Object;
         }
 
         base.Update();

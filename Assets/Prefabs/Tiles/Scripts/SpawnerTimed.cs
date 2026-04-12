@@ -8,6 +8,10 @@ public class SpawnerTimed : MonoBehaviour
     private float countdownTimer;
     private GameObject spawnedObject;
 
+    [Header ("Audio")]
+    private AudioSource audioSource;
+    public AudioClip powerUpClip;
+
     void Awake()
     {
         GameManager.instance.powerUpSpawners.Add(this);
@@ -17,9 +21,10 @@ public class SpawnerTimed : MonoBehaviour
     void Start()
     {
 
+        audioSource = GetComponent<AudioSource>();
 
         //chekck if the object spawns on start
-        if(bIsSpawnOnStart)
+        if (bIsSpawnOnStart)
         {
             countdownTimer = 0;
         }
@@ -39,6 +44,14 @@ public class SpawnerTimed : MonoBehaviour
             //check if the object is spawned
             if (spawnedObject == null)
             {
+
+                //check if audioclip isn't null
+                if (powerUpClip != null && countdownTimer >= timeBetweenSpawns)
+                {
+
+                    audioSource.PlayOneShot(powerUpClip);
+                }
+
                 countdownTimer -= Time.deltaTime;
 
 

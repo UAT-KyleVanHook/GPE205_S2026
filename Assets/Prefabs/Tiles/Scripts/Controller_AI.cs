@@ -1,6 +1,7 @@
 using System.Drawing;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
 
@@ -13,6 +14,7 @@ public abstract class Controller_AI : Controller
     private float lastChangeStateTime;
     protected AIState currentState = AIState.Idle;
 
+    [Header("Base Enemy AI Data")]
     public GameObject target; //originally a Transform
     public float fleeDistance = 10.0f;
     public float hearingDistance = 1.0f;
@@ -43,7 +45,7 @@ public abstract class Controller_AI : Controller
         //Possess(pawn);
 
         //set enemy targets
-        target = GameManager.instance.playerObject;
+        target = GameManager.instance.player1Object;
 
     }
 
@@ -483,6 +485,13 @@ public abstract class Controller_AI : Controller
 
         // Target the closest tank
         target = closestTank.gameObject;
+    }
+
+    public override void SetInputActions(InputActionAsset prefabInputActions)
+    {
+
+        //does nothing on AI
+
     }
 
 }

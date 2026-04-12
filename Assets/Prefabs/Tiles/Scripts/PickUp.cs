@@ -4,6 +4,11 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
 
+    public virtual void Awake()
+    {
+        GameManager.instance.pickUps.Add(this);
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
     {
@@ -26,12 +31,15 @@ public class PickUp : MonoBehaviour
     public virtual void OnTriggerEnter(Collider other)
     {
 
+
         //base effects
 
     }
 
     public virtual void OnDestroy()
     {
+
+        GameManager.instance.pickUps.Remove(this);
         //base effects
     }
 

@@ -4,12 +4,14 @@ using UnityEngine.Rendering;
 [System.Serializable]
 public class PowerUpHealth : PowerUp
 {
+
     public float amountToHeal;
-    
     
 
     public override void Apply(Pawn target)
     {
+
+
         //TODO: Heal the pawn in target
         Debug.Log("Healed!");
 

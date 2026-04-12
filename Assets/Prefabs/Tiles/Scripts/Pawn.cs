@@ -6,6 +6,9 @@ public abstract class Pawn : MonoBehaviour
     public Mover mover;
 
     [HideInInspector]
+    public Controller pawn;
+
+    [HideInInspector]
     public Controller controller;
 
     [HideInInspector]

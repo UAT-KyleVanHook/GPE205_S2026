@@ -133,16 +133,17 @@ public class UOptionsMenu : MonoBehaviour
         if (!toggleVlaue)
         {
          
+
             GameManager.instance.bIsSplitScreen = toggleVlaue;
             Debug.Log("Is Split-Screen On: " + GameManager.instance.bIsSplitScreen.ToString());
-
+            Debug.Log(GameManager.instance.bIsSplitScreen);
         }
         else
         {
 
             GameManager.instance.bIsSplitScreen = toggleVlaue;
             Debug.Log("Is Split-Screen On: " + GameManager.instance.bIsSplitScreen.ToString());
-
+            Debug.Log(GameManager.instance.bIsSplitScreen);
         }
 
     }

@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 8816303664100588418}
   - component: {fileID: 7858214278046128660}
   - component: {fileID: 7480952987091363016}
-  - component: {fileID: 2456559028608649735}
   - component: {fileID: 2863319408339808719}
   - component: {fileID: 5586376814774589656}
   - component: {fileID: 4111760496550341509}
@@ -165,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PawnPlayer
   mover: {fileID: 0}
+  pawn: {fileID: 0}
   controller: {fileID: 0}
   noisemaker: {fileID: 0}
   health: {fileID: 0}
@@ -183,21 +183,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfda9ebaec60e94a8684f5b0d6f30e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TankMover
---- !u!114 &2456559028608649735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3975476951372857355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99d5763d0480f374a9ab9e815346115c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TankShooter
-  muzzleLocation: {fileID: 5137877511926017555}
-  bulletPrefab: {fileID: 412767944011280485, guid: 9c64157f02c51b44b8fd9982713e7441, type: 3}
-  fireRate: 1
 --- !u!114 &2863319408339808719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   currentHealth: 0
   maxHealth: 1
+  destructionClip: {fileID: 8300000, guid: 7d9509db97ce5d9489c7e533eabca523, type: 3}
 --- !u!114 &5586376814774589656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,7 +221,7 @@ AudioSource:
   m_GameObject: {fileID: 3975476951372857355}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9048864448999483261, guid: 4d4a417615361374eaa287747eb4beed, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
@@ -432,5 +418,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2bb8a1159affc94399bb851b1068b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamageOnOverlap_SelfDestruct
-  parentObject: {fileID: 3975476951372857355}
+  owner: {fileID: 0}
   damageDone: 3
+  parentObject: {fileID: 3975476951372857355}

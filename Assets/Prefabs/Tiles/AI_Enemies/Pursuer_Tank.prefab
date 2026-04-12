@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PawnPlayer
   mover: {fileID: 0}
+  pawn: {fileID: 0}
   controller: {fileID: 0}
   noisemaker: {fileID: 0}
   health: {fileID: 0}
@@ -196,6 +197,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TankShooter
   muzzleLocation: {fileID: 5330851540507039581}
   bulletPrefab: {fileID: 412767944011280485, guid: 9c64157f02c51b44b8fd9982713e7441, type: 3}
+  shootingClip: {fileID: 8300000, guid: f4dbfe0506a19f44e8af7fb2e1004346, type: 3}
   fireRate: 1
 --- !u!114 &2702080450877156757
 MonoBehaviour:
@@ -211,6 +213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HealthComponent
   currentHealth: 0
   maxHealth: 2
+  destructionClip: {fileID: 8300000, guid: 7d9509db97ce5d9489c7e533eabca523, type: 3}
 --- !u!114 &3484920085694246532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +237,7 @@ AudioSource:
   m_GameObject: {fileID: 51292646115207178}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -9048864448999483261, guid: 4d4a417615361374eaa287747eb4beed, type: 2}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1

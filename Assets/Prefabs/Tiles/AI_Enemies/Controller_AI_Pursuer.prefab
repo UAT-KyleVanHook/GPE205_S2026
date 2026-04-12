@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Controller_AI_Pursuer
   pawn: {fileID: 0}
+  currentScore: 0
+  scoreAmount: 70
   target: {fileID: 0}
   fleeDistance: 10
   hearingDistance: 2

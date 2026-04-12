@@ -6,11 +6,15 @@ public class HealthComponent : MonoBehaviour
     //[HideInInspector]
     public float maxHealth;
 
+    public AudioClip destructionClip;
+    private AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public virtual void Start()
     {
 
         //currentHealth = maxHealth;
+        audioSource = GetComponent<AudioSource>();
         
     }
 
@@ -25,7 +29,7 @@ public class HealthComponent : MonoBehaviour
         
     }
 
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount, Pawn source)
     {
 
         currentHealth = currentHealth - amount;
@@ -34,7 +38,7 @@ public class HealthComponent : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            Die();
+            Die(source);
         }
 
     }
@@ -46,10 +50,10 @@ public class HealthComponent : MonoBehaviour
 
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        //if (currentHealth <= 0)
+        //{
+           // Die(source);
+        //}
 
     }
 
@@ -62,10 +66,37 @@ public class HealthComponent : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public virtual void Die()
+    public virtual void Die(Pawn source)
     {
-        //play sound clip at point
-        AudioSource.PlayClipAtPoint(GameManager.instance.destructionClip, transform.position, 2.0f);
+        //check that the sound clip isn't null
+        if (destructionClip != null)
+        {
+            //play sound clip at point
+            AudioSource.PlayClipAtPoint(destructionClip, transform.position);
+        }
+
+        Controller sourceController = source.GetController();
+
+        //check that the source that desrtoyed this object has a controller
+        if (sourceController != null)
+        {
+            Pawn tempPawn = gameObject.GetComponent<Pawn>();
+
+            //chekc that the destroyed object has a pawn.
+            if (tempPawn != null)
+            {
+                Controller tempController = tempPawn.GetController();
+
+                //check that destroyed object has a controller. Then get the scoreAmount form the controller
+                if (tempController != null)
+                {
+                    sourceController.AddToScore(tempController.scoreAmount);
+                }
+
+            }
+
+
+        }
 
         Debug.Log(gameObject.name + " has moved on to a better place.");
         Destroy(gameObject);

@@ -134,4 +134,18 @@ public class MapGenerator : MonoBehaviour
         return avialableTiles[tileNumber];
 
     }
+
+    public void RemoveMap()
+    {
+        for (int x = 0; x < mapRows; x++)
+        {
+            for (int y = 0; y < mapCols; y++)
+            {
+
+                Destroy(grid[x, y].gameObject);
+
+            }
+        }
+
+    }
 }

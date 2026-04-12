@@ -46,20 +46,35 @@ public class ControllerPlayer : Controller
 
         Vector2 movementVector = inputActions["Move"].ReadValue<Vector2>();
 
-        //pass movement vector from inputAction into the pawns move and rotate functions
-        pawn.Move(new Vector2(0, movementVector.y));
-        pawn.Rotate(new Vector2(movementVector.x, 0));
+        if(pawn != null)
+        {
+            //pass movement vector from inputAction into the pawns move and rotate functions
+            pawn.Move(new Vector2(0, movementVector.y));
+            pawn.Rotate(new Vector2(movementVector.x, 0));
+        }
+
 
         //Debug.Log("Move Vector: " + movementVector);
 
         if (inputActions["Shoot"].triggered)
         {
+            if(pawn != null)
+            {
+                TankShooter shooter = pawn.GetComponent<TankShooter>();
 
-            TankShooter shooter = pawn.GetComponent<TankShooter>();
+                //was "pawn.Shoot()", but had to change to to issue with AI enemies also firing.
+                shooter.Shoot();
+            }
 
-            //was "pawn.Shoot()", but had to change to to issue with AI enemies also firing.
-            shooter.Shoot();
         }
+
+    }
+
+    //set the specified input actions for this comtroller
+    public override void SetInputActions(InputActionAsset prefabInputActions)
+    {
+
+        inputActions = prefabInputActions;
 
     }
 }

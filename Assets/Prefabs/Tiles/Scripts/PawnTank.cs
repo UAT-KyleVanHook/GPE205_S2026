@@ -60,8 +60,8 @@ public class PawnTank : Pawn
 
     public override void Shoot()
     {
+
         //Debug.Log("Pew-Pew!");
-  
         shooter.Shoot();
 
         //set noise amount

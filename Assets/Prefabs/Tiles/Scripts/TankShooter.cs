@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class TankShooter : Shooter
 {
     public GameObject bulletPrefab;
     private PawnTank pawn;
+    private AudioSource audioSource;
+    public AudioClip shootingClip;
     public float fireRate; // how many shots per second we can fire
     private float nextShootTime;
 
@@ -12,6 +15,7 @@ public class TankShooter : Shooter
     {
         //get TankPawn
         pawn = GetComponent<PawnTank>();
+        audioSource = GetComponent<AudioSource>();  
         nextShootTime = Time.time;
     }
 
@@ -25,12 +29,13 @@ public class TankShooter : Shooter
     {
         if (Time.time >= nextShootTime)
         {
-            AudioSource source = gameObject.GetComponent<AudioSource>();
+            //AudioSource source = gameObject.GetComponent<AudioSource>();
 
-            if (source != null)
+            if (shootingClip != null)
             {
-                source.PlayOneShot(GameManager.instance.shootingClip);
+                audioSource.PlayOneShot(shootingClip);
             }
+
 
             Shoot(pawn.shootForce);
 
@@ -46,8 +51,20 @@ public class TankShooter : Shooter
         //Instatnitate bullet
         GameObject bulletObject = Instantiate<GameObject>(bulletPrefab, muzzleLocation.position, muzzleLocation.rotation);
 
+
         //push it forward
         Rigidbody rb = bulletObject.GetComponent<Rigidbody>();
+
+        //set parent of rigid body
+        // Get the DamageOnOverlap component
+        DamageOnOverlap DamOver = bulletObject.GetComponent<DamageOnOverlap>();
+
+        if (DamOver != null)
+        {
+            // Set the owner to the pawn that shot this shell, if there is one (otherwise, owner is null).
+            DamOver.owner = pawn;
+        }
+
         rb.AddForce(muzzleLocation.forward * shootForce);
 
         //reset the pawns noise amount
@@ -60,11 +77,11 @@ public class TankShooter : Shooter
         if (Time.time >= nextShootTime)
         {
 
-            AudioSource source = gameObject.GetComponent<AudioSource>();
+            //AudioSource source = gameObject.GetComponent<AudioSource>();
 
-            if (source != null)
+            if (shootingClip != null)
             {
-                source.PlayOneShot(GameManager.instance.shootingClip);
+                audioSource.PlayOneShot(shootingClip);
             }
 
             AIShoot(pawn.shootForce);
@@ -79,6 +96,17 @@ public class TankShooter : Shooter
     {
         //Instatnitate bullet
         GameObject bulletObject = Instantiate<GameObject>(bulletPrefab, muzzleLocation.position, muzzleLocation.rotation);
+
+
+        //set parent of rigid body
+        // Get the DamageOnOverlap component
+        DamageOnOverlap DamOver = bulletObject.GetComponent<DamageOnOverlap>();
+
+        if (DamOver != null)
+        {
+            // Set the owner to the pawn that shot this shell, if there is one (otherwise, owner is null).
+            DamOver.owner = pawn;
+        }
 
         //push it forward
         Rigidbody rb = bulletObject.GetComponent<Rigidbody>();

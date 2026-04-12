@@ -4,11 +4,13 @@ using UnityEngine;
 [System.Serializable]
 public class PowerUpMaxHealthUp : PowerUp
 {
+
+
     public float amountToIncrease;
 
     public override void Apply(Pawn target)
     {
-        
+
 
         HealthComponent targetHealthComp = target.GetComponent<HealthComponent>();
 
